@@ -19,11 +19,12 @@ function showApiContent(posts) {
   <h3>${post.author}</h3>
   <h4>${post.date}</h4>
   <p>${post.content.substring(1, 100) + "..."}</p>  
-  <button id=${post._id} onclick=${readMore(post)};> <a href="post.html">  
+  <h6>${post.tags}</h6>
+  </br>
+  <button class="readMoreButton" id=${post._id} onclick=${readMore(post)};> <a href="post.html">  
   Read more
   </a>  
   </button>
-  <h6>${post.tags}</h6>
   </div>`
   );
   return `<ul>${apiContent}</ul> <h1>ggg</h1>`;
