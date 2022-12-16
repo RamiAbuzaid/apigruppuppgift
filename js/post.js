@@ -3,9 +3,10 @@ const content = document.getElementById("postContent");
 content.innerHTML = "<p>Loading...";
 content.innerHTML = showApiContent(window.history.state);
 function showApiContent(state) {
-  const { _id, title, date, content, author, tags } = state;
+ 
   console.log(state);
   if (state) {
+    const { _id, title, date, content, author, tags } = state;
     const stateContent = `
     
       <div>

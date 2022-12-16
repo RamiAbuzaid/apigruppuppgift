@@ -32,7 +32,6 @@ function showApiContent(posts) {
 }
 
 function readMore(state) {
-  console.log(state, "ssss");
 
   return window.history.pushState(state, "", "post.html");
 }
