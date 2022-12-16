@@ -1,7 +1,6 @@
-const fetchPromise = fetch(
-  "https://blog-api-assignment.up.railway.app/posts"
-);
+const fetchPromise = fetch("https://blog-api-assignment.up.railway.app/posts");
 const content = document.getElementById("apiContent");
+
 
 content.innerHTML = "<p>Loading...";
 fetchPromise
@@ -12,19 +11,27 @@ fetchPromise
     content.innerHTML = showApiContent(posts);
   });
 function showApiContent(posts) {
-  const apiContent = posts?.map((post) => `
-  
+  const apiContent = posts?.map(
+    (post) => `
 
   <div>
   <h2>${post.title}</h2>
   <h3>${post.author}</h3>
   <h4>${post.date}</h4>
-  <p>${post.content.substring(1, 100)}</p>
-  <a href="post.html">Read more</a> 
+  <p>${post.content.substring(1, 100) + "..."}</p>  
+  <button id=${post._id} onclick=${readMore(post)};> <a href="post.html">  
+  Read more
+  </a>  
+  </button>
   <h6>${post.tags}</h6>
   </div>`
-  
   );
-  return `<ul>${apiContent}</ul>`;
+  return `<ul>${apiContent}</ul> <h1>ggg</h1>`;
 }
 
+function readMore(state) {
+  console.log(state, "ssss");
+
+  return window.history.pushState(state, "", "post.html");
+
+}
