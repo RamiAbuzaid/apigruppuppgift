@@ -1,7 +1,6 @@
 const fetchPromise = fetch("https://blog-api-assignment.up.railway.app/posts");
 const content = document.getElementById("apiContent");
 
-
 content.innerHTML = "<p>Loading...";
 fetchPromise
   .then((res) => {
@@ -21,7 +20,9 @@ function showApiContent(posts) {
   <p>${post.content.substring(1, 100) + "..."}</p>  
   <h6>${post.tags}</h6>
   </br>
-  <button class="readMoreButton" id=${post._id} onclick=${readMore(post)};> <a href="post.html">  
+  <button class="readMoreButton" id=${post._id} onclick=${readMore(
+      post
+    )};> <a href="post.html">  
   Read more
   </a>  
   </button>
@@ -34,5 +35,4 @@ function readMore(state) {
   console.log(state, "ssss");
 
   return window.history.pushState(state, "", "post.html");
-
 }
