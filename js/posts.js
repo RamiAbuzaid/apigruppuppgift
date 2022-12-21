@@ -1,37 +1,39 @@
-const fetchPromise = fetch("https://blog-api-assignment.up.railway.app/posts");
-const content = document.getElementById("apiContent");
+const apiContent = document.getElementById("apiContent");
 
-content.innerHTML = "<p>Loading...";
-fetchPromise
-  .then((res) => {
-    return res.json();
-  })
-  .then((posts) => {
-    content.innerHTML = showApiContent(posts);
-  });
-function showApiContent(posts) {
-  const apiContent = posts?.map(
+let apiData;
+
+const POSTS_URL = "https:blog-api-assignment.up.railway.app/posts";
+
+function showApiContent() {
+  const content = apiData?.map(
     (post) => `
 
-  <div>
-  <h2>${post.title}</h2>
-  <h3>${post.author}</h3>
-  <h4>${post.date}</h4>
-  <p>${post.content.substring(1, 100) + "..."}</p>  
-  <h6>${post.tags}</h6>
-  </br>
-  <button class="readMoreButton" id=${post._id} onclick=${readMore(
-      post
-    )};> <a href="post.html">  
-  Read more
-  </a>  
-  </button>
-  </div>`
+   <div>
+   <h2>${post.title}</h2>
+   <h3>${post.author}</h3>
+   <h4>${post.date}</h4>
+   <p>${post.content.substring(1, 100) + "..."}</p>
+   <h6>${post.tags}</h6>
+   <a class="read-more" href="post.html?id=${post._id}" data-id='${
+      post._id
+    }'> read more...</a>
+   </br>
+   </div>`
   );
-  return `<ul>${apiContent}</ul> <h1>ggg</h1>`;
+  return `<ul>${content}</ul>`;
 }
 
-function readMore(state) {
+const getData = async () => {
+  try {
+    const res = await fetch(POSTS_URL);
+    const data = await res.json();
+    apiData = data;
+    console.log(apiData.map((s) => s));
 
-  return window.history.pushState(state, "", "post.html");
-}
+    if (apiData) {
+      apiContent.innerHTML = showApiContent();
+    }
+  } catch (e) {
+    console.warn(e);
+  }
+};

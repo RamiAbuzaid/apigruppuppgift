@@ -5,7 +5,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body onload="getData();">
     <header>
       <a class="adminLink" href="/admin/index.html">Admin</a>
       <br />
@@ -14,11 +14,11 @@
 
     <main id="apiContent">
       <section>
-        <h1 class="title"></h1>
-        <h3 class="author"></h3>
-        <h6 class="date"></h6>
-        <h6 class="content"></h6>
-        <pre class="tags"></pre>
+        <h1 id="title"></h1>
+        <h3 id="author"></h3>
+        <h6 id="date"></h6>
+        <h6 id="content"></h6>
+        <pre id="tags"></pre>
       </section>
     </main>
 
